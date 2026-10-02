@@ -1,0 +1,10 @@
+Order Tracking FAQ
+
+Once your order ships, you will receive a tracking number via email. 
+Tracking information typically updates within 24-48 hours of shipment.
+
+If your tracking status has not updated in more than 5 business days, 
+please contact customer support for assistance.
+
+Order status categories include: Pending, In Transit, Customs Clearance, 
+Out for Delivery, and Delivered.
