@@ -11,7 +11,7 @@ from fastapi import FastAPI, HTTPException
 # HTTPException lets us return proper error responses (like "404 not found")
 # instead of crashing when something doesn't exist.
 
-from tracking import init_db, insert_shipment, update_status, get_shipment
+from tracking import init_db, update_status, get_shipment
 # These are the functions you already built and tested in tracking.py.
 # Importing them here means app_supply.py can call them directly.
 
@@ -79,8 +79,10 @@ Answer:"""
 app = FastAPI()
 init_db()
 
+
 class QuestionRequest (BaseModel):
     question: str
+
 
 class UpdateStatusRequest(BaseModel):
     shipment_id: str
@@ -92,10 +94,10 @@ class PredictDelayRequest(BaseModel):
 
 
 @app.post("/ask")
-
 def ask(request: QuestionRequest):
     answer = answer_question(request.question)
-    return {"question": request.question ,"answer":answer}
+    return {"question": request.question, "answer": answer}
+
 
 @app.get("/track/{shipment_id}")
 def track(shipment_id: str):
