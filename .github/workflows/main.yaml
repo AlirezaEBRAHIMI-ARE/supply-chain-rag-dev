@@ -40,6 +40,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Convert owner name to lowercase
+        run: echo "OWNER_LC=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Tag and push image
         run: |
           docker tag rag-supply-app ghcr.io/${{ github.repository_owner }}/rag-supply-app:latest
