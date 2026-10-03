@@ -45,5 +45,5 @@ jobs:
 
       - name: Tag and push image
         run: |
-          docker tag rag-supply-app ghcr.io/${{ github.repository_owner }}/rag-supply-app:latest
-          docker push ghcr.io/${{ github.repository_owner }}/rag-supply-app:latest
+          docker tag rag-supply-app ghcr.io/${{ env.OWNER_LC }}/rag-supply-app:latest
+          docker push ghcr.io/${{ env.OWNER_LC }}/rag-supply-app:latest
