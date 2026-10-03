@@ -8,13 +8,13 @@ from app_supply import app
 client = TestClient(app)
 # Create a test client wired to your app
 
-def test_track_exsiting_shipment ():
-    response = cleint,get("/track/SHIP123")
+def test_track_existing_shipment ():
+    response = client.get("/track/SHIP123")
     assert response.status_code == 200
     # assert = "this must be true, or the test fails"
     # status_code 200 means "request succeeded" in HTTP
 
 def test_track_missing_shipment():
     response = client.get ("/track/DOES_NOT_EXIST")
-    assert response.status_code==400
+    assert response.status_code==404
     # confirms your error handling (HTTPException) actually works correctly
