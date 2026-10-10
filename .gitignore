@@ -1,10 +1,13 @@
 .venv/
 __pycache__/
-*.pyc 
+*.pyc
 chroma_db/
-tracking.db 
-.DS_Store 
+tracking.db
+.DS_Store
 
 mlruns/
 *.CSV
 *.pkl
+.terraform/
+*.tfstate
+*.tfstate.*

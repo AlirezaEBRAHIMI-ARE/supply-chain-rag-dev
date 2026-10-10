@@ -80,6 +80,11 @@ app = FastAPI()
 init_db()
 
 
+@app.get("/")
+def health_check():
+    return {"status": "ok"}
+
+
 class QuestionRequest (BaseModel):
     question: str
 
