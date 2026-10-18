@@ -24,8 +24,8 @@ data "aws_iam_policy_document" "github_trust" {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
       values = [
-        "repo:AlirezaEBRAHIMI-ARE/supply-chain-rag-dev:pull_request",
-        "repo:AlirezaEBRAHIMI-ARE/supply-chain-rag-dev:ref:refs/heads/main",
+        "repo:AlirezaEBRAHIMI-ARE@18158087/supply-chain-rag-dev@1402240232:pull_request",
+        "repo:AlirezaEBRAHIMI-ARE@18158087/supply-chain-rag-dev@1402240232:ref:refs/heads/main",
       ]
     }
   }
