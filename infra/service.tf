@@ -1,4 +1,5 @@
 resource "aws_ecs_service" "app" {
+  count                             = var.enable_app ? 1 : 0
   name                              = "rag-supply-service"
   cluster                           = aws_ecs_cluster.main.id
   task_definition                   = aws_ecs_task_definition.app.arn
@@ -13,7 +14,7 @@ resource "aws_ecs_service" "app" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.app.arn
+    target_group_arn = aws_lb_target_group.app[0].arn
     container_name   = "app"
     container_port   = 8000
   }
