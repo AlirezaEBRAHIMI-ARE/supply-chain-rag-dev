@@ -74,7 +74,7 @@ resource "aws_ecs_task_definition" "app" {
   cpu                      = 1024
   memory                   = 3072
   execution_role_arn       = aws_iam_role.task_execution.arn
-    runtime_platform {
+  runtime_platform {
     operating_system_family = "LINUX"
     cpu_architecture        = "ARM64"
   }
