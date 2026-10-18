@@ -1,4 +1,5 @@
 resource "aws_lb" "app" {
+  count              = var.enable_app ? 1 : 0
   name               = "rag-supply-alb"
   load_balancer_type = "application"
   internal           = false
@@ -8,6 +9,7 @@ resource "aws_lb" "app" {
 }
 
 resource "aws_lb_target_group" "app" {
+  count                = var.enable_app ? 1 : 0
   name                 = "rag-supply-tg"
   port                 = 8000
   protocol             = "HTTP"
@@ -26,16 +28,17 @@ resource "aws_lb_target_group" "app" {
 }
 
 resource "aws_lb_listener" "http" {
-  load_balancer_arn = aws_lb.app.arn
+  count             = var.enable_app ? 1 : 0
+  load_balancer_arn = aws_lb.app[0].arn
   port              = 80
   protocol          = "HTTP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.app.arn
+    target_group_arn = aws_lb_target_group.app[0].arn
   }
 }
 
 output "alb_dns_name" {
-  value = aws_lb.app.dns_name
+  value = var.enable_app ? aws_lb.app[0].dns_name : "app is switched off (enable_app = false)"
 }
