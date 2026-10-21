@@ -1,0 +1,42 @@
+name: ECR push test (tiny image)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  test-push:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Get temporary AWS credentials (OIDC, ECR role)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::308087722552:role/github-actions-ecr
+          aws-region: eu-west-3
+
+      - name: Log in to ECR
+        id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Create a tiny test image definition
+        run: |
+          mkdir test-image
+          printf 'FROM alpine:3.20\nLABEL purpose=push-test\n' > test-image/Dockerfile
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push the tiny image (ARM64)
+        uses: docker/build-push-action@v6
+        with:
+          context: ./test-image
+          platforms: linux/arm64
+          push: true
+          tags: ${{ steps.ecr.outputs.registry }}/rag-supply-app:test-${{ github.sha }}
