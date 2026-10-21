@@ -11,3 +11,6 @@ mlruns/
 .terraform/
 *.tfstate
 *.tfstate.*
+.env
+*.tfvars
+*.pem
