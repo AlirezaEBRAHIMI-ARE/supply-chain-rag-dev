@@ -7,5 +7,5 @@ variable "enable_app" {
 variable "image_tag" {
   description = "Tag of the Docker image the task runs (a commit ID, or latest)"
   type        = string
-  default     = "latest"
+  default     = "fd4e0464203b6e08ec8e5dc95fbce51075bae64d"
 }
