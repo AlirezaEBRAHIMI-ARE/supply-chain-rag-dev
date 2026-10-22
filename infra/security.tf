@@ -1,7 +1,7 @@
 resource "aws_security_group" "alb" {
   name        = "rag-supply-alb-sg"
   description = "Load balancer, allow HTTP from the internet"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = module.network.vpc_id
 
   tags = { Name = "rag-supply-alb-sg" }
 }
@@ -23,7 +23,7 @@ resource "aws_vpc_security_group_egress_rule" "alb_all" {
 resource "aws_security_group" "app" {
   name        = "rag-supply-app-sg"
   description = "App containers, allow only the load balancer on port 8000"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = module.network.vpc_id
 
   tags = { Name = "rag-supply-app-sg" }
 }

@@ -8,7 +8,7 @@ resource "aws_ecs_service" "app" {
   health_check_grace_period_seconds = 300
 
   network_configuration {
-    subnets          = [aws_subnet.public_a.id, aws_subnet.public_b.id]
+    subnets          = module.network.public_subnet_ids
     security_groups  = [aws_security_group.app.id]
     assign_public_ip = true
   }
