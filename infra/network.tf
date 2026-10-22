@@ -1,5 +1,6 @@
 module "network" {
-  source = "./modules/network"
+  source      = "./modules/network"
+  name_prefix = terraform.workspace == "default" ? "rag-supply" : "rag-supply-${terraform.workspace}"
 }
 
 output "vpc_id" {
