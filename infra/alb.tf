@@ -4,7 +4,7 @@ resource "aws_lb" "app" {
   load_balancer_type = "application"
   internal           = false
   security_groups    = [aws_security_group.alb.id]
-  subnets            = [aws_subnet.public_a.id, aws_subnet.public_b.id]
+  subnets            = module.network.public_subnet_ids
   idle_timeout       = 120
 }
 
@@ -14,7 +14,7 @@ resource "aws_lb_target_group" "app" {
   port                 = 8000
   protocol             = "HTTP"
   target_type          = "ip"
-  vpc_id               = aws_vpc.main.id
+  vpc_id               = module.network.vpc_id
   deregistration_delay = 30
 
   health_check {
