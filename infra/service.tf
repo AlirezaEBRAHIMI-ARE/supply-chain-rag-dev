@@ -5,7 +5,7 @@ resource "aws_ecs_service" "app" {
   task_definition                   = aws_ecs_task_definition.app.arn
   desired_count                     = 1
   launch_type                       = "FARGATE"
-  health_check_grace_period_seconds = 300
+  health_check_grace_period_seconds = 600
 
   network_configuration {
     subnets          = module.network.public_subnet_ids
